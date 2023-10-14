@@ -38,5 +38,21 @@ namespace NuclearSystem.View
             }
             return false;
         }
+        public bool GetDecayResourceIcon(NuclearResourceTypes type, out Sprite icon)
+        {
+            icon = null;
+            if (_resourceViewDataSo)
+            {
+                foreach (var viewData in _resourceViewDataSo.ResourceViewDatas)
+                {
+                    if (viewData.ResourceType == type)
+                    {
+                        icon = viewData.ResourceDecayIcon;
+                        return true;
+                    }
+                }
+            }
+            return false;
+        }
     }
 }
