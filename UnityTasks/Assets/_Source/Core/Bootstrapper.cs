@@ -25,6 +25,7 @@ namespace Core
             inputListener.Construct(_game);
             clickableComponent.Construct(_score);
             scoreView.Construct(_score);
+            scoreView.Bind();
         }
 
         private void StartGame()

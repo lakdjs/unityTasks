@@ -14,9 +14,13 @@ namespace ScoreSystem
             _score = score;
         }
 
-        private void Start()
+        public void Bind()
         {
             _score.OnScoreChange += RefreshScoreText;
+        }
+        private void Start()
+        {
+            
         }
 
         private void RefreshScoreText(int curScore)
