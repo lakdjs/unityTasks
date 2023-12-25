@@ -24,6 +24,7 @@ namespace Data
         [SerializeField] private List<AudioData> audioDataNeutral;
 
         [SerializeField] private string message;
+        [SerializeField] private int id;
         
     }
 
@@ -44,6 +45,7 @@ namespace Data
         private SerializedProperty message;
         private SerializedProperty audioTypes;
         private SerializedProperty audioList;
+        private SerializedProperty GUIid;
         private bool messageGuiOn;
         private bool listGuiOn;
         private bool clearOn;
@@ -56,13 +58,7 @@ namespace Data
             speed = serializedObject.FindProperty("speed");
             bulletSpeed = serializedObject.FindProperty("bulletSpeed");
             message = serializedObject.FindProperty("message");
-#if unity_editor
-            if (uid == "")
-            {
-                uid = guid.generate().tostring();
-                unityeditor.editorutility.setdirty(this);
-            }
-#endif
+            GUIid = serializedObject.FindProperty("id");
         }
 
         public override void OnInspectorGUI()
@@ -99,7 +95,7 @@ namespace Data
             if (GUILayout.Button("Clear Data"))
             {
                 messageGuiOn = false;
-                listGuiOn = false;  
+                listGuiOn = false;
                 Debug.Log("cleared data");
             }
             else
