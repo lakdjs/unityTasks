@@ -1,18 +1,28 @@
-using System.Collections;
-using System.Collections.Generic;
+using System;
+using BulletSystem;
+using ShootSystem;
 using UnityEngine;
 
-public class Bootstrapper : MonoBehaviour
+namespace Core
 {
-    // Start is called before the first frame update
-    void Start()
+    public class Bootstrapper : MonoBehaviour
     {
-        
-    }
+        [SerializeField] private CharacterShooter characterShooter;
+        [SerializeField] private GameObject bulletPrefab;
+        [SerializeField] private int maxPoolSize;
+        [SerializeField] private int startPoolSize;
+        private ObjectPool _objectPool;
 
-    // Update is called once per frame
-    void Update()
-    {
-        
+        private void Awake()
+        {
+            StartGame();
+        }
+
+        private void StartGame()
+        {
+            _objectPool = new ObjectPool(bulletPrefab, maxPoolSize, startPoolSize);
+            _objectPool.Init();
+            characterShooter.Construct(_objectPool);
+        }
     }
 }

@@ -9,7 +9,7 @@ namespace InputSystem
         [SerializeField] private CharacterShooter characterShooter;
         private void Update()
         {
-            if (Input.GetKey(KeyCode.S))
+            if (Input.GetKeyDown(KeyCode.S))
             {
                 characterShooter.Shoot();
             }

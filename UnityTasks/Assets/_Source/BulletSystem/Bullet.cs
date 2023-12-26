@@ -8,19 +8,24 @@ namespace BulletSystem
         [SerializeField] private float speed;
         [SerializeField] private float lifeTime;
         private float curLifeTime;
+        private ObjectPool _owner;
 
-        private void Awake()
+        private void OnEnable()
         {
             curLifeTime = lifeTime;
         }
 
+        public void SetOwner(ObjectPool objectPool)
+        {
+            _owner = objectPool;
+        }
         void Update()
         {
             transform.position += transform.forward * speed * Time.deltaTime;
             curLifeTime -= Time.deltaTime;
             if (curLifeTime <= 0)
             {
-                Destroy(gameObject);
+                _owner.ReturnToPool(gameObject);
             }
         }
     }
